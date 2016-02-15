@@ -1,0 +1,6 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+localhost.local	FALSE	/	FALSE		PHPSESSID	u79p2f6ng40g3tjls08g4i2tb4
+localhost.local	FALSE	/guke/admin/php	FALSE		UserName	admin
