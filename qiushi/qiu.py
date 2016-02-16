@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+# coding=utf-8
+__author__ = 'YIN'
+import urllib2
+import urllib, time
+import re
+
+page = 1
+url = 'http://www.qiushibaike.com/hot/page/' + str(page)
+user_agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36Name'
+host = 'www.qiushibaike.com'
+headers = {'User-Agent': user_agent}
+try:
+    request = urllib2.Request(url, headers=headers)
+    response = urllib2.urlopen(request)
+    content = response.read().decode('utf-8')
+#   pattern = re.compile('<div.*class="content">', re.S)
+    patternStr1 = r'''<div.?author.*?<h2>(.*?)</h2>.*?<div.*?content">(.*?)<!--(.*?)-->.*?
+        </div>(.*?)<span class="stats-vote.*?class="number">(.*?)</i>'''
+    patternStr2 = r'''<div.*?author.*?<a.*?<img.*?>.*?</a>.*?<a.*?>.*?<h2>(.*?)</h2>'''
+    patternStr3 = r'''<h2>(.*?)</h2>.*?<div class="content.*?>(.*?)<!--(\d*?)-->.*?</div>(.*?)<div class="stats.*?<span class="stats-vote.*?class="number">(.*?)</i>'''
+    print patternStr1
+    pattern = re.compile(patternStr3, re.S)
+    items = re.findall(pattern, content)
+#    print items
+    for item in items:
+        haveimg = re.search("img", item[3])
+        ltime = time.localtime(int(item[2]))
+        timeStr = time.strftime("%Y-%m-%d %H:%M:%S", ltime)
+        if not haveimg:
+            print item[0], item[1], timeStr, item[4]
+
+except urllib2.URLError, e:
+    if hasattr(e, "code"):
+        print(e.code)
+    if hasattr(e, "reason"):
+        print(e.reason)

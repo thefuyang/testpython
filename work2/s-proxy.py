@@ -2,7 +2,7 @@
 __author__ = 'YIN'
 import urllib2
 try:
-    response = urllib2.urlopen('http://www.0fire.net/sadasd')
+    response = urllib2.urlopen('http://www.qiushibaike.com/')
 except urllib2.HTTPError, e:
     print e.code
 except urllib2.URLError, e:
