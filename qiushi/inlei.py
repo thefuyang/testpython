@@ -58,7 +58,7 @@ class Qsbk:
             input = raw_input()
             self.loadPage()
             if input == "Q":
-                self.enable == False
+                self.enable = False
                 return
             print u"第%d页\t发布人:%s\t发布时间:%s\t赞:%s\n%s" % (page, story[0], story[2], story[3], story[1])
 

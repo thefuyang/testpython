@@ -23,7 +23,7 @@ try:
     patternStr = r'''<h2>(.*?)</h2>.*?<div class="content.*?>(.*?)<!--(\d*?)-->.*?</div>(.*?)<div class="stats.*?<span class="stats-vote.*?class="number">(.*?)</i>'''
     pattern = re.compile(patternStr, re.S)
     items = re.findall(pattern, content)
-    conn = sqlite3.connect('qiu.db')
+    conn = sqlite3.connect('qiushu/qiu.db')
     for item in items:
         haveimg = re.search("img", item[3])
         ltime = time.localtime(int(item[2]))

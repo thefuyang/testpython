@@ -15,12 +15,8 @@ try:
     response = urllib2.urlopen(request)
     content = response.read().decode('utf-8')
 #   pattern = re.compile('<div.*class="content">', re.S)
-    patternStr1 = r'''<div.?author.*?<h2>(.*?)</h2>.*?<div.*?content">(.*?)<!--(.*?)-->.*?
-        </div>(.*?)<span class="stats-vote.*?class="number">(.*?)</i>'''
-    patternStr2 = r'''<div.*?author.*?<a.*?<img.*?>.*?</a>.*?<a.*?>.*?<h2>(.*?)</h2>'''
-    patternStr3 = r'''<h2>(.*?)</h2>.*?<div class="content.*?>(.*?)<!--(\d*?)-->.*?</div>(.*?)<div class="stats.*?<span class="stats-vote.*?class="number">(.*?)</i>'''
-    print patternStr1
-    pattern = re.compile(patternStr3, re.S)
+    patternStr = r'''<h2>(.*?)</h2>.*?<div class="content.*?>(.*?)<!--(\d*?)-->.*?</div>(.*?)<div class="stats.*?<span class="stats-vote.*?class="number">(.*?)</i>'''
+    pattern = re.compile(patternStr, re.S)
     items = re.findall(pattern, content)
 #    print items
     for item in items:
